@@ -1,63 +1,56 @@
 from django.db import models
-from projectdata.models import Project
-from account.models import Employee
-from django.utils import timezone
+from projectdata.models import Project, ProjectSubcode, ProjectSubcodeActivity
+from account.models import Employee, CostCenter
+# from django.utils import timezone
+
+
+
+class Status(models.Model):
+    statusName = models.CharField(max_length=50, unique=True)   ## Save (1), Submit (2), ManagerReviewed (3), AdminReviewed (4)
+
+
+    class Meta:
+        db_table = "Status"
+        verbose_name_plural = "Statuses"
+
+    def __str__(self) -> str:
+        return f"{self.id}_{self.statusName}"
 
 
 
 
 class Timesheet(models.Model):
-    # class All_choice:
-    #     def __init__(self):
-    #         self.choices = {
-    #                 "Submit": "Submit",
-    #                 "NotSubmit": "NotSubmit"
-    #         }
-    # status = models.CharField(max_length=50, choices= All_choice().choices)
-    status_choices = (
-            ("Submit", "Submit"),
-            ("NotSubmit", "NotSubmit")
-    )
     location_choices = (
             ("WFH","WFH"),
             ("OnSite", "OnSite"),
             ("Office","Office")
     )
-    day = models.CharField(max_length=50)
-    date = models.DateField()
-    status = models.CharField(max_length=50, choices= status_choices, null=True, blank=True)
+    date = models.DateField(db_index=True)
+    status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True, related_name="timesheet_status")
     hours = models.FloatField(null=True, blank=True)
-    organization = models.CharField(max_length= 100, null=True, blank=True)
-    project_code = models.CharField(max_length= 100, null=True, blank=True)
-    project_subcode = models.CharField(max_length= 100, null=True, blank=True)
-    project_name = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True, related_name="project_related_name")
-    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True, blank=True, related_name="employee_related")
-    bill = models.CharField(max_length= 100, null=True, blank=True)
-    location = models.CharField(max_length= 100, choices= location_choices)
-    comment = models.CharField(max_length= 300, null=True, blank=True)
-    submit = models.BooleanField(default=False)
-    manager_approve = models.BooleanField(default=False)
-    admin_approve = models.BooleanField(default=False)
+    project = models.ForeignKey(Project, on_delete=models.SET_NULL, null=True, related_name="timesheet_project")
+    projectsubcode = models.ForeignKey(ProjectSubcode, on_delete=models.SET_NULL, null=True, related_name="timesheet_projectsubcode")
+    project_subcode_activity = models.ForeignKey(ProjectSubcodeActivity, on_delete=models.SET_NULL, null=True, 
+                                       related_name="timesheet_project_subcode_activity")
+    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True, related_name="timesheet_employee", db_index=True)
+    employee_costcenter = models.ForeignKey(CostCenter, on_delete=models.SET_NULL, null=True, 
+                                            related_name="timesheet_emp_costcenter")
+    bill = models.BooleanField(blank=True, null=True)
+    location = models.CharField(max_length= 50, choices= location_choices)
+    year_week = models.CharField(max_length= 30, null=True) ## 2024_20
+    comment = models.CharField(max_length= 100, null=True, blank=True)
+
+
+    class Meta:
+        db_table = "Aspl_Timesheet"
+        ordering = ["-date"]
+        # indexes = [
+        #     # models.Index(fields=['employee', 'date']),
+        #     models.Index(fields=['employee',], name='employeeID_index'),
+        #     models.Index(fields=['date',], name='date_index'),
+        # ]
 
     def __str__(self) -> str:
         return str(self.id)
 
 
-
-
-
-class WeeklyReport(models.Model):
-    employee = models.ForeignKey(Employee, on_delete=models.SET_NULL, null=True, blank=True, related_name="employee_report")
-    week_start_date = models.DateField()
-    week_end_date = models.DateField()
-    submit_timesheet = models.ManyToManyField(Timesheet, blank=True, related_name="week_submited_timesheet")
-    submit = models.BooleanField(default=False)
-    managerApprove = models.BooleanField(default=False)
-    adminApprove = models.BooleanField(default=False)
-#     approve = models.BooleanField(default=False)
-    submit_date = models.DateField(null=True, blank=True)
-    approve_data = models.JSONField(default=list, null=True, blank=True)
-    reject_data = models.JSONField(default=list, null=True, blank=True)
-
-    def __str__(self) -> str:
-        return str(self.id)

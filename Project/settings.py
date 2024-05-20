@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'account',
     'projectdata',
     'timesheet',
+    'tracker',
 ]
 
 MIDDLEWARE = [
@@ -96,6 +97,20 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# import pymysql
+# pymysql.install_as_MySQLdb()
+
+# DATABASES = {  
+#     'default': {  
+#         'ENGINE':config('DB_ENGINE'),  
+#         'NAME':config('DB_NAME'),  
+#         'USER':config('DB_USER'),  
+#         'PASSWORD':config('DB_PASSWORD'),  
+#         'HOST':config('DB_HOST'),        
+#         'PORT':config('DB_PORT'),   
+#     }
+# }
 
 
 # Password validation
@@ -195,15 +210,3 @@ MEDIA_ROOT= os.path.join(BASE_DIR,"media/")
 CORS_ALLOW_ALL_ORIGINS = True 
 
 
-AWS_ACCESS_KEY_ID = config('ACCESS_KEY_ID')
-AWS_SECRET_ACCESS_KEY = config('SECRET_KEY')
-AWS_STORAGE_BUCKET_NAME = config('BUCKET_NAME')
-AWS_S3_SIGNATURE_VERSION = config('VERSION')
-AWS_S3_REGION_NAME = config('REGION_NAME')
-AWS_S3_FILE_OVERWRITE = config('FILE_OVERWRITE')
-# AWS_DEFAULT_ACL =  config('ACL')
-AWS_S3_VERIFY = config('VERIFY')
-DEFAULT_FILE_STORAGE =config('DEFAULT_FILE_STORAGE')
-AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
-JSON_FOLDER_NAME = "Json_folder/"
-AWS_S3_USE_SSL = False

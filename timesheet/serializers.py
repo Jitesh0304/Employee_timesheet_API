@@ -1,26 +1,44 @@
 from rest_framework import serializers
-from .models import Timesheet, WeeklyReport
-from django.utils import timezone
+from .models import Timesheet, Status
+from projectdata.models import Project, ProjectSubcode, ProjectSubcodeActivity
+from django.db.models import Prefetch
+from account.models import CostCenter
+# from django.utils import timezone
 
 
 class TimesheetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Timesheet
-        fields = ['day', 'date','status','hours','project_name','project_subcode','bill','location','comment']
+        fields = ['date','hours','project','projectsubcode','project_subcode_activity','location',
+                  'year_week', 'comment']
 
 
     def validate(self, attrs):
         user = self.context.get('request').user
-        if "project_name" not in attrs or "project_subcode" not in attrs:
-            raise serializers.ValidationError("[ project_name or project_subcode ] field is missing ....")
-        project = attrs.get('project_name')
-        if user.organization != project.organization:
-            raise serializers.ValidationError("Project does not belong to your organization")
-        attrs['project_code'] = project.projectCode
-        if attrs.get("project_subcode") not in project.projectSubCode:
-            raise serializers.ValidationError("Please provide a valid project subcode ... ")
-        # return super().validate(attrs)
+
+        required_fields = {'project', 'projectsubcode', 'project_subcode_activity'}
+        # if any(field in attrs.keys() for field in required_fields):
+        #     raise serializers.ValidationError("project, projectsubcode and project_subcode_activity fields are required ...")
+        if not required_fields.issubset(attrs):
+            raise serializers.ValidationError(
+                "Fields 'project', 'projectsubcode', and 'project_subcode_activity' are required."
+            )
+
+        input_project = attrs['project']
+        input_project_subcode = attrs['projectsubcode']
+        project_subcode_activity = attrs['project_subcode_activity']
+
+        if (project_subcode_activity.projectsubcode.project.projectID != input_project.projectID) or \
+            (project_subcode_activity.projectsubcode.id != input_project_subcode.id):
+            raise serializers.ValidationError(
+                "Mismatch: 'projectsubcode' and 'project_subcode_activity' do not belong to the same project."
+            )
+
+        attrs['employee_costcenter'] = user.costcenter
+
         return attrs
+
+
 
     def create(self, validated_data):
         user = self.context.get('request').user
@@ -28,20 +46,15 @@ class TimesheetSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
-    def update(self, instance, validated_data):
-        instance.project_code = validated_data.get('project_code', instance.project_code)
-        instance.project_name = validated_data.get('project_name', instance.project_name)
-        instance.project_subcode = validated_data.get('project_subcode', instance.project_subcode)
-        instance.hours = validated_data.get('hours', instance.hours)
-        instance.status = validated_data.get('status', instance.status)
-        instance.date = validated_data.get('date', instance.date)
-        instance.day = validated_data.get('day', instance.day)
-        instance.comment = validated_data.get('comment', instance.comment)
-        instance.location = validated_data.get('location', instance.location)
-        instance.bill = validated_data.get('bill', instance.bill)
-        # return super().update(instance, validated_data)
-        instance.save()
-        return instance
+    # def update(self, instance, validated_data):
+    #     instance.project = validated_data.get('project', instance.project)
+    #     instance.hours = validated_data.get('hours', instance.hours)
+    #     instance.date = validated_data.get('date', instance.date)
+    #     instance.comment = validated_data.get('comment', instance.comment)
+    #     instance.location = validated_data.get('location', instance.location)
+    #     # return super().update(instance, validated_data)
+    #     instance.save()
+    #     return instance
 
 
 
@@ -51,57 +64,94 @@ class TimesheetRetrieveSerializer(serializers.ModelSerializer):
         model = Timesheet
         fields = "__all__"
 
-
-
-class WeeklyReportSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = WeeklyReport
-        fields = ['week_start_date', 'week_end_date','submit']
-
-    def create(self, validated_data):
-        user = self.context.get('request').user
-        validated_data['employee'] = user
-        return super().create(validated_data)
-
-    def update(self, instance, validated_data):
-        instance.week_start_date = validated_data.get('week_start_date', instance.week_start_date)
-        instance.week_end_date = validated_data.get('week_end_date', instance.week_end_date)
-        # instance.submit = validated_data.get('submit', instance.submit)
-        # instance.approve = validated_data.get('approve', instance.approve)
-        # instance.submit_date = validated_data.get('submit_date', instance.submit_date)
-        # instance.approve_data = validated_data.get('approve_data', instance.approve_data)
-        # instance.reject_data = validated_data.get('reject_data', instance.reject_data)
-        instance.save()
-        return instance
-
-
-class ManagerWeeklyReportRetrieveSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = WeeklyReport
-        fields = "__all__"
-
-    def validate(self, attrs):
-        user = self.context.get('request').user
-        if 'approve' not in attrs:
-            raise serializers.ValidationError("[approve] field is missing")
-        update_list = ['approve']
-        data = {key: value for key, value in attrs.items() if key in update_list}
-        return data
-
-
-    def update(self, instance, validated_data):
-        instance.submit = validated_data.get('submit', instance.submit)
-        instance.approve = validated_data.get('approve', instance.approve)
-        # instance.submit_date = validated_data.get('submit_date', instance.submit_date)
-        instance.approve_data = validated_data.get('approve_data', instance.approve_data)
-        instance.reject_data = validated_data.get('reject_data', instance.reject_data)
-        instance.save()
-        return instance
-    
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        if 'approve_data' in data:
-            data.pop('approve_data')
-        if 'reject_data' in data:
-            data.pop('reject_data')
+        # Prefetch related objects in a single query
+        queryset = Timesheet.objects.filter(id=instance.id).prefetch_related(
+            Prefetch('project', queryset=Project.objects.only('projectID', 'projectName', 'projectCode')),
+            Prefetch('status', queryset=Status.objects.only('id', 'statusName')),
+            Prefetch('projectsubcode', queryset=ProjectSubcode.objects.only('id', 'projectSubcode')),
+            Prefetch('project_subcode_activity', queryset=ProjectSubcodeActivity.objects.only('id', 'activityCode', 'name')),
+            Prefetch('employee_costcenter', queryset=CostCenter.objects.only('id', 'name', 'number')),
+        ).first()
+
+        project_data = queryset.project
+        status_data = queryset.status
+        projectsubcode_data = queryset.projectsubcode
+        subcodeactivity_data = queryset.project_subcode_activity
+        costcenter_data = queryset.employee_costcenter
+
+        if project_data:
+            data['project'] = {"projectID": project_data.projectID, "projectName": project_data.projectName,
+                               "projectCode": project_data.projectCode}
+        if status_data:
+            data['status'] = {"id": status_data.id, "statusName": status_data.statusName}
+
+        if projectsubcode_data:
+            data['projectsubcode'] = {'id': projectsubcode_data.id, 'projectSubcode':projectsubcode_data.projectSubcode}
+            
+        if subcodeactivity_data:
+            data['project_subcode_activity'] = {'id': subcodeactivity_data.id, 'activityCode':subcodeactivity_data.activityCode,
+                                                'name': subcodeactivity_data.name}
+            
+        if costcenter_data:
+            data['employee_costcenter'] = {'id': costcenter_data.id, 'name':costcenter_data.name,
+                                                'number': costcenter_data.number}
+
         return data
+    
+
+
+
+# class ManagerUpdateEmpTimesheetSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Timesheet
+#         fields = ['bill','comment']
+
+#     # def update(self, instance, validated_data):
+#     #     instance.bill = validated_data.get('bill', instance.bill)
+#     #     instance.comment = validated_data.get('comment', instance.comment)
+#     #     instance.save()
+#     #     return instance
+
+#     def update(self, instances, validated_data):
+#         for instance, data in zip(instances, validated_data):
+#             instance.bill = data.get('bill', instance.bill)
+#             instance.comment = data.get('comment', instance.comment)
+#             instance.save()
+#         return instances
+
+
+
+class BulkUpdateListSerializer(serializers.ListSerializer):
+    def update(self, queryset, validated_data):
+        
+        if len(queryset) != len(validated_data):
+            raise serializers.ValidationError("Mismatched data count for bulk update.")
+
+        # print(validated_data)
+        # print(queryset)
+        object_data_map = {item['id']: item for item in validated_data}
+
+        updated_objects = []
+        for obj in queryset:
+            obj_data = object_data_map.get(obj.id)
+            if obj_data:
+                for attr, value in obj_data.items():
+                    setattr(obj, attr, value)
+                obj.save()
+                updated_objects.append(obj)
+
+        return updated_objects
+
+
+
+
+class ManagerUpdateEmpTimesheetSerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField()
+    class Meta:
+        model = Timesheet
+        fields = ['id','bill','comment']
+        list_serializer_class = BulkUpdateListSerializer
+
+

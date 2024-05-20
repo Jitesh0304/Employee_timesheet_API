@@ -9,4 +9,5 @@ urlpatterns = [
     path('user/', include('account.urls')),
     path('project/', include('projectdata.urls')),
     path('timesheet/', include('timesheet.urls')),
+    path('tracker/', include('tracker.urls')),
 ]

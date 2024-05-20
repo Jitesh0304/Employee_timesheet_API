@@ -1,0 +1,2065 @@
+{
+	"info": {
+		"_postman_id": "fc34154d-dc85-4700-a650-55d879162452",
+		"name": "Timesheet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25675772"
+	},
+	"item": [
+		{
+			"name": "regitser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"beta@gmail.com\",\r\n    \"name\":\"beta\",\r\n    \"password\":\"beta1234\",\r\n    \"password2\":\"beta1234\",\r\n    \"empID\": \"1004\",\r\n    \"organization\": 1,\r\n    \"department\": 1,\r\n    \"companyCode\": 1,\r\n    \"costcenter\": 1,\r\n    \"role\": 3,\r\n    \"branch\": 1,\r\n    \"doj\": \"2024-01-01\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"register",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"empID\":\"1002\",\r\n    \"password\":\"admin123\",\r\n    \"companyCode\":\"1001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"empID\": \"1003\",\r\n    \"password\":\"manager1\",\r\n    \"companyCode\":\"1001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin create costcenter",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"cost2\",\r\n    \"number\":\"abcd9876\",\r\n    \"description\":\"cost center two\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/costcenter/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"costcenter",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin get all costcenter",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/costcenter/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"costcenter",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin create department",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"magna\",\r\n    \"description\":\"magna department\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/department/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"department",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin get department",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/department/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"department",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin create role",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"roleName\":\"employee\",\r\n    \"description\":\"emp role\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/role/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"role",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin retrieve all roles",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/role/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"role",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin create companycode",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"code\":\"artn1\",\r\n    \"description\":\"artictern company code\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/companycode/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"companycode",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin retrieve all companycode",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/companycode/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"companycode",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin create organization",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"artictern\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/org/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"org",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin retrieve all organization",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/org/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"org",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin create new office branch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"location\":\"Odisha\",\r\n    \"description\" : \"odisha branch\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/branch/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"branch",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin retrieve all office branch",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjgyOTIzLCJpYXQiOjE3MTQ2Mzk3MjMsImp0aSI6ImY2MjZmN2Y3ODEwYzQwNWViZTE3OTQ2MjY4MzhhMzllIiwiZW1haWwiOiJzdXBlckBnbWFpbC5jb20iLCJuYW1lIjoic3VwZXIiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.VIIDUD3rYcHHawfuZle0Y003rIYBSHXiMpRnKv2rXYw"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/branch/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"branch",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin  can create user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyMjE0LCJpYXQiOjE3MTU3NjkwMTQsImp0aSI6ImYwNGNlZmY2ODJlYTRlNDA5ZDc0OTQyOWU2YjZkMzE5IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0._1TJLhzrV701JrV9pyWPPEd96i63J3_3y6W4jxQ63qo"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"gamma@gmail.com\",\r\n    \"name\":\"gamma\",\r\n    \"password\":\"gamma123\",\r\n    \"password2\":\"gamma123\",\r\n    \"empID\": \"1008\",\r\n    \"organization\": 1,\r\n    \"department\": 1,\r\n    \"companyCode\": 1,\r\n    \"costcenter\": 1,\r\n    \"role\": 2,\r\n    \"branch\": 1,\r\n    \"doj\": \"2024-01-01\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/registerby/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"registerby",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"empID\": \"1006\",\r\n    \"password\":\"beta1234\",\r\n    \"companyCode\":\"1001\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user can see there profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEzODk5MTk1LCJpYXQiOjE3MTM4NTU5OTUsImp0aSI6ImRjMjUxYzkwZTZhZTRlZDE4NmI1ZmM1NjRmOGQ5M2UyIiwiZW1haWwiOiJtYW5hZ2VyMUBnbWFpbC5jb20iLCJuYW1lIjoibWFuYWdlcjEiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.gv-hZYPPpx-jKn5hROBqBBI7cFGDs0LaBAN17S_hPys",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/profile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager and admin can see all user profile list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/allprofile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"allprofile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager and admin can see any user profile ..... empID required in URL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/userprofile/1005/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"userprofile",
+						"1005",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin can update employee data........  empID required in URL",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODI3NDAzLCJpYXQiOjE3MTU3ODQyMDMsImp0aSI6IjllZTc5YTE2MTYwMjQ1YzNiYTRkNGUyOWU0NjBkODAyIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.tRBJt9UqfQe7uxMYlqfFoUtd6EYy11W88L7g40wtON0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"theta@gmail.com\",\r\n    \"name\":\"theta\",\r\n    \"organization\": 1,\r\n    \"department\": 2,\r\n    \"companyCode\": 1,\r\n    \"costcenter\": 1,\r\n    \"role\": 2,\r\n    \"branch\": 1,\r\n    \"doj\": \"2024-01-01\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/employeupdate/1007/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"employeupdate",
+						"1007",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user change password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyMTQ5LCJpYXQiOjE3MTU3Njg5NDksImp0aSI6IjJhMTA3MmZkODE0OTQ5MmViM2NhZjNiYzUxOTk4YjMwIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.Okz4NI-tYAdZ6uARXADq9u3Wl7KUncFjn2HWwBr4dRs"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"password\":\"admin123\",\r\n    \"password2\":\"admin123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/changepassword/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"changepassword",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "forgot password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"empID\":\"aspl02\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/send_reset_password_email/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"send_reset_password_email",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "forgot password otp verification and reset password",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjk2NTQ3MTU2LCJpYXQiOjE2OTY1MDM5NTYsImp0aSI6Ijc3ZGZkZmE4N2ZiODQ4Mzk4ZTlmY2Y2YzRmOTIzYzhkIiwiZW1haWwiOiJhbHBoYUBnbWFpbC5jb20iLCJ1c2VybmFtZSI6ImFscGhhIiwib3JnYW5pemF0aW9uIjoiYXNwbCJ9.A0rTjOwLdO5RggFMby9y-bJy3n-CIE3zXwKMwl7dor0",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"empID\":\"aspl02\",\r\n    \"otp\":\"987654\",\r\n    \"password\":\"alpha123\",\r\n    \"password2\":\"alpha123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/reset_password/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"reset_password",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin create project",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"projectName\":\"project1\",\r\n    \"projectCode\":\"pr01\",\r\n    \"organization\": 1,\r\n    \"projectManager\": \"1002\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/createproject/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"createproject",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all projects 3 details .....   ID , name , code",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/getprojectname/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"getprojectname",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update project data ......  projectID required in URL",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"projectManager\": \"1003\",\r\n    \"complete\":\"False\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/updateproject/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"updateproject",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create project subcode",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"project\": 1,\r\n    \"projectSubcode\":\"sub1\",\r\n    \"description\":\"project subcode one\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/storesubcode/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"storesubcode",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all subcodes related to that project .... projectID required in URL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/getsubcode/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"getsubcode",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update project subcode ...... subcode ID required in URL",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"project\": 1,\r\n    \"projectSubcode\":\"sub1\",\r\n    \"description\":\"project_subcode_one\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/updatesubcode/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"updatesubcode",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create project subcode activity",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"projectsubcode\": 1,\r\n    \"name\":\"subcode_one activity\",\r\n    \"activityCode\":\"act1\",\r\n    \"description\":\"project subcode activity\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/subcodeactivity/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"subcodeactivity",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all subcodes activities related to that subcode ... subcode ID required in URL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/getsubcodeactivity/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"getsubcodeactivity",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updated project subcode activity .....   activity ID required in URL",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"projectsubcode\": 1,\r\n    \"name\":\"subcode_one activity\",\r\n    \"activityCode\":\"act1\",\r\n    \"description\":\"project_subcode_activity\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/updateactivity/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"updateactivity",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get projects details and linked key details ..  projectID required in URL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/detail/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"detail",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all projects details and linked key details ....    ( not recommended )",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/detail/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"detail",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager can see only those projects where he/she is manager",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODE5NzYyLCJpYXQiOjE3MTU3NzY1NjIsImp0aSI6ImVmZGFkMTVkYjUwOTRiMDE4OGFjMDIxYmM3OGUzMTI0IiwiZW1haWwiOiJtYW5hZ2VyMUBnbWFpbC5jb20iLCJuYW1lIjoibWFuYWdlcjEiLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.HjIIOQpjIQiQDQLT5plSmNuCMJRW38WVJ1nEPQqjWI4"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/managerprojects/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"managerprojects",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager can see all user working in one particular project ( only his project )....  projectID  required in URL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODI4OTcwLCJpYXQiOjE3MTU3ODU3NzAsImp0aSI6ImVlNTk0ZmU3YWJmMjQ4MDk5OWJiNGM3OGEzODRjMWE3IiwiZW1haWwiOiJtYW5hZ2VyMUBnbWFpbC5jb20iLCJuYW1lIjoibWFuYWdlcjEiLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.8VUiFyItdJsxtgF1S3ORKTKpkKMrbkWc-jcfqkODMTc"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/project/projectusers/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"project",
+						"projectusers",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "store timesheet data Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODE2NTYzLCJpYXQiOjE3MTU3NzMzNjMsImp0aSI6IjA3NTAzMWQ5ZjNkNTRmNGY5MjM0YTA4NzIxZTc2MzRhIiwiZW1haWwiOiJiZXRhQGdtYWlsLmNvbSIsIm5hbWUiOiJiZXRhIiwib3JnYW5pemF0aW9uIjoiQVNQTCJ9.EEW1nSqG1WqKY8owyZdEhVyOKMUNpyWo_OYlkmieScI"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\":\"2024-05-07\",\r\n    \"location\":\"WFH\",\r\n    \"hours\": 8.30,\r\n    \"comment\":\"hello\",\r\n    \"project\": 1,\r\n    \"projectsubcode\": 1,\r\n    \"project_subcode_activity\": 1,\r\n    \"year_week\": \"2024_19\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/timesheetdata/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"timesheetdata",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee can see their timesheet data last 15 days Copy",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODE2NTYzLCJpYXQiOjE3MTU3NzMzNjMsImp0aSI6IjA3NTAzMWQ5ZjNkNTRmNGY5MjM0YTA4NzIxZTc2MzRhIiwiZW1haWwiOiJiZXRhQGdtYWlsLmNvbSIsIm5hbWUiOiJiZXRhIiwib3JnYW5pemF0aW9uIjoiQVNQTCJ9.EEW1nSqG1WqKY8owyZdEhVyOKMUNpyWo_OYlkmieScI"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/timesheetdata/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"timesheetdata",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee modify daily timesheet data ..... timesheet data ID is required in URL",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzEzMTYzNDU3LCJpYXQiOjE3MTMxMjAyNTcsImp0aSI6Ijc0OTNiZDAwNDI2ZDQ2YWNiMGFmMTc2Y2Y0NjAzNTAyIiwiZW1haWwiOiJhbHBoYUBnbWFpbC5jb20iLCJuYW1lIjoiYWxwaGEiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.ZwQJYtwuB2X18Rdt1c4ciJzEc9tDh5aaJQNUR-gJoHg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\":\"2024-04-04\",\r\n    \"location\":\"OnSite\",\r\n    \"hours\": \"07:30\",\r\n    \"bill\":\"Yes\",\r\n    \"comment\":\"hello\",\r\n    \"project\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/updatedata/3/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"updatedata",
+						"3",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee can see their timesheet data week numbers list",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODE2NTYzLCJpYXQiOjE3MTU3NzMzNjMsImp0aSI6IjA3NTAzMWQ5ZjNkNTRmNGY5MjM0YTA4NzIxZTc2MzRhIiwiZW1haWwiOiJiZXRhQGdtYWlsLmNvbSIsIm5hbWUiOiJiZXRhIiwib3JnYW5pemF0aW9uIjoiQVNQTCJ9.EEW1nSqG1WqKY8owyZdEhVyOKMUNpyWo_OYlkmieScI"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/retriveallweeksdata/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"retriveallweeksdata",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee can see their timesheet data based on week .. add week number in URL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODE2NTYzLCJpYXQiOjE3MTU3NzMzNjMsImp0aSI6IjA3NTAzMWQ5ZjNkNTRmNGY5MjM0YTA4NzIxZTc2MzRhIiwiZW1haWwiOiJiZXRhQGdtYWlsLmNvbSIsIm5hbWUiOiJiZXRhIiwib3JnYW5pemF0aW9uIjoiQVNQTCJ9.EEW1nSqG1WqKY8owyZdEhVyOKMUNpyWo_OYlkmieScI"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/retriveparticularweekdata/2024_19/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"retriveparticularweekdata",
+						"2024_19",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee can see their timesheet data week number base on status type .. save , submit,  approve",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODE2NTYzLCJpYXQiOjE3MTU3NzMzNjMsImp0aSI6IjA3NTAzMWQ5ZjNkNTRmNGY5MjM0YTA4NzIxZTc2MzRhIiwiZW1haWwiOiJiZXRhQGdtYWlsLmNvbSIsIm5hbWUiOiJiZXRhIiwib3JnYW5pemF0aW9uIjoiQVNQTCJ9.EEW1nSqG1WqKY8owyZdEhVyOKMUNpyWo_OYlkmieScI"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/submitnotsubmitdata/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"submitnotsubmitdata",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employe save weekly report Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODE2NTYzLCJpYXQiOjE3MTU3NzMzNjMsImp0aSI6IjA3NTAzMWQ5ZjNkNTRmNGY5MjM0YTA4NzIxZTc2MzRhIiwiZW1haWwiOiJiZXRhQGdtYWlsLmNvbSIsIm5hbWUiOiJiZXRhIiwib3JnYW5pemF0aW9uIjoiQVNQTCJ9.EEW1nSqG1WqKY8owyZdEhVyOKMUNpyWo_OYlkmieScI"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"week_start_date\":\"2024-05-01\",\r\n    \"week_end_date\":\"2024-05-05\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/weekreport/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"weekreport",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager get user list of not approve timesheet .... projectID required in URL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODMwMDgzLCJpYXQiOjE3MTU3ODY4ODMsImp0aSI6Ijc3NTFjOWYzYWZkOTRjMTk4ODY0YTRkNDFiZGIzODkzIiwiZW1haWwiOiJtYW5hZ2VyMUBnbWFpbC5jb20iLCJuYW1lIjoibWFuYWdlcjEiLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.qKZJy2oFDLTv_U6rbnKKcDoghLOt17W-4-NSu9yvmYw"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/managergetdata/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"managergetdata",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager get user timesheet .... projectID , empID , year_week required in URL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODE5NzYyLCJpYXQiOjE3MTU3NzY1NjIsImp0aSI6ImVmZGFkMTVkYjUwOTRiMDE4OGFjMDIxYmM3OGUzMTI0IiwiZW1haWwiOiJtYW5hZ2VyMUBnbWFpbC5jb20iLCJuYW1lIjoibWFuYWdlcjEiLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.HjIIOQpjIQiQDQLT5plSmNuCMJRW38WVJ1nEPQqjWI4"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/managergetdataweek/1/1006/2024_19/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"managergetdataweek",
+						"1",
+						"1006",
+						"2024_19",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "manager approve/reject one weekreport",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODE5NzYyLCJpYXQiOjE3MTU3NzY1NjIsImp0aSI6ImVmZGFkMTVkYjUwOTRiMDE4OGFjMDIxYmM3OGUzMTI0IiwiZW1haWwiOiJtYW5hZ2VyMUBnbWFpbC5jb20iLCJuYW1lIjoibWFuYWdlcjEiLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.HjIIOQpjIQiQDQLT5plSmNuCMJRW38WVJ1nEPQqjWI4"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"approve\":\"True\",\r\n    \"week_start_date\":\"2024-05-01\",\r\n    \"week_end_date\":\"2024-05-05\",\r\n    \"employee_id\": \"1006\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/managerapprove/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"managerapprove",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin retrieve all weeks of an employee ... empID required in URL",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/adminretrive/1006/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"adminretrive",
+						"1006",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin retrieve employee particular week data ....   empID and  year_week required",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/adminretriveweek/1006/2024_18/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"adminretriveweek",
+						"1006",
+						"2024_18",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "admin approve/reject one month data Copy",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODEyNTU5LCJpYXQiOjE3MTU3NjkzNTksImp0aSI6IjA0MmViODZlMzg4ODQ5YTc4ZDFiMDI2N2U1NjBiODc2IiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJuYW1lIjoiYWRtaW4iLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.uiLnbmT0adaTEFPTRYaNjx-dzUjAOy5-7yinsO7i7fQ"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"approve\":\"True\",\r\n    \"week_start_date\":\"2024-05-01\",\r\n    \"week_end_date\":\"2024-05-05\",\r\n    \"employee_id\":\"1006\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/timesheet/adminapprove/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"timesheet",
+						"adminapprove",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee apply for leave",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjkxNzU4LCJpYXQiOjE3MTQ2NDg1NTgsImp0aSI6IjA3MmI1NzZjODgwOTQwNDY4ZDZkMjIwZGEwNGVhNjNiIiwiZW1haWwiOiJhbHBoYUBnbWFpbC5jb20iLCJuYW1lIjoiYWxwaGEiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.hWn92M--oGVQAWYLBHEQmrx-Mcx3GvFLVLCVgdj7rzk"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"start_date\": \"2024-05-04\",\r\n    \"start_half\":\"second_half\",\r\n    \"end_date\":\"2024-05-04\",\r\n    \"end_half\":\"first_half\",\r\n    \"message\":\"Sick leave\",\r\n    \"leave_type\": \"paid_leave\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/tracker/leaveapplication/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"tracker",
+						"leaveapplication",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve leave all application ID and empID who applied",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODMxMjUyLCJpYXQiOjE3MTU3ODgwNTIsImp0aSI6ImI2MGVhZmJlYWFiODQxMDZhYjg3MjI4OTFhODA3NDA0IiwiZW1haWwiOiJtYW5hZ2VyMUBnbWFpbC5jb20iLCJuYW1lIjoibWFuYWdlcjEiLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.iK8eXCXN0bewEjemCcLE3hz7sTAdICUVQ--uNWd0hrc"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/tracker/leaveapplication/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"tracker",
+						"leaveapplication",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve a particular leave application",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE1ODMxMjUyLCJpYXQiOjE3MTU3ODgwNTIsImp0aSI6ImI2MGVhZmJlYWFiODQxMDZhYjg3MjI4OTFhODA3NDA0IiwiZW1haWwiOiJtYW5hZ2VyMUBnbWFpbC5jb20iLCJuYW1lIjoibWFuYWdlcjEiLCJvcmdhbml6YXRpb24iOiJBU1BMIn0.iK8eXCXN0bewEjemCcLE3hz7sTAdICUVQ--uNWd0hrc"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/tracker/leaveapplication/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"tracker",
+						"leaveapplication",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "employee update leave application .... leave application ID is required",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NjkxNzU4LCJpYXQiOjE3MTQ2NDg1NTgsImp0aSI6IjA3MmI1NzZjODgwOTQwNDY4ZDZkMjIwZGEwNGVhNjNiIiwiZW1haWwiOiJhbHBoYUBnbWFpbC5jb20iLCJuYW1lIjoiYWxwaGEiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.hWn92M--oGVQAWYLBHEQmrx-Mcx3GvFLVLCVgdj7rzk"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"start_date\": \"2024-05-04\",\r\n    \"start_half\": \"second_half\",\r\n    \"end_date\": \"2024-05-04\",\r\n    \"end_half\": \"second_half\",\r\n    \"message\": \"Sick leave\",\r\n    \"leave_type\": \"paid_leave\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/tracker/leaveapplication/1/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"tracker",
+						"leaveapplication",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "department change tracker",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0NzU2MDQyLCJpYXQiOjE3MTQ3MTI4NDIsImp0aSI6IjM5ZGM5NGYyYjdkYjQ2NGI4ZDJiNmYzZTc4MTBjZTg4IiwiZW1haWwiOiJtYW5hZ2VyMUBnbWFpbC5jb20iLCJuYW1lIjoibWFuYWdlcjEiLCJvcmdhbml6YXRpb24iOiJhc3BsIn0.F1kTRZ1hohtFSh4lj3v52uW9gtxye2jjkUXgoDW6IFk"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8000/tracker/deptracker/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"tracker",
+						"deptracker",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

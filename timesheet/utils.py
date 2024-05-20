@@ -3,13 +3,23 @@ from django.utils import timezone
 
 
 
+def get_year_and_week_number(date):
+    try:
+        format_date = datetime.strptime(date, "%Y-%m-%d").date()
+        year = format_date.isocalendar()
+        return year[0], year[1]
+    except Exception as e:
+        return None, None
+
+
+
 def get_week_nums_and_days_of_the_year(year):
     dt = {}
     for i in range(1, 54):
         start_of_year = datetime(year, 1, 1)
         start_of_week = start_of_year - timedelta(days=start_of_year.weekday()) + timedelta(weeks=i - 1)
         dates = [start_of_week + timedelta(days=i) for i in range(7)]
-        dates = [date for date in dates if date.year == year]
+        # dates = [date for date in dates if date.year == year]     ### uncomment this line to make the year 53 weeks
         # dt[i] = dates
         if not dates:
             pass
@@ -41,7 +51,7 @@ def get_week_nums_and_days_till_today(year, week):
         start_of_year = datetime(year, 1, 1)
         start_of_week = start_of_year - timedelta(days=start_of_year.weekday()) + timedelta(weeks=i - 1)
         dates = [start_of_week + timedelta(days=i) for i in range(7)]
-        dates = [date for date in dates if date.year == year]
+        # dates = [date for date in dates if date.year == year]     ### uncomment this line to make the year 53 weeks
         # dt[i] = dates
         if not dates:
             pass
@@ -61,7 +71,7 @@ def get_all_days_of_the_week(year, week):
     start_of_year = datetime(year, 1, 1)
     first_day_of_week = start_of_year - timedelta(days=start_of_year.weekday()) + timedelta(weeks=week - 1)
     dates_of_week = [first_day_of_week + timedelta(days=i) for i in range(7)]
-    dates_of_week = [date for date in dates_of_week if date.year == year]
+    # dates_of_week = [date for date in dates_of_week if date.year == year]     ### uncomment this line to make the year 53 weeks
     return dates_of_week
 
 
@@ -97,7 +107,7 @@ def get_current_and_previous_week_days(year, week):
         start_of_year = datetime(year, 1, 1)
         first_day_of_week = start_of_year - timedelta(days=start_of_year.weekday())
         dates_of_week = [first_day_of_week + timedelta(days=i) for i in range(7)]
-        dates_of_week = [date for date in dates_of_week if date.year == year]
+        # dates_of_week = [date for date in dates_of_week if date.year == year]     ### uncomment this line to make the year 53 weeks
         return dates_of_week
     else:
         dt = {}
@@ -106,7 +116,7 @@ def get_current_and_previous_week_days(year, week):
                 start_of_year = datetime(year, 1, 1)
                 first_day_of_week = start_of_year - timedelta(days=start_of_year.weekday()) + timedelta(weeks=i - 1)
                 dates = [first_day_of_week + timedelta(days=i) for i in range(7)]
-                dates = [date for date in dates if date.year == year]
+                # dates = [date for date in dates if date.year == year]     ### uncomment this line to make the year 53 weeks
                 dt[i] = dates
         return dt
 
