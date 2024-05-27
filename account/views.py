@@ -527,6 +527,7 @@ class AdminUpdateEmployeeProfileView(APIView):
             user = request.user
             try:
                 emp_data = Employee.objects.get(empID = empid)
+                emp_data.user_permission.add()
             except Exception:
                 return Response({'msg':'Employee does not exist with the given empID'}, status= status.HTTP_400_BAD_REQUEST)
             serializer = AdminUpdateEmployeeProfileSerializer(emp_data, data = request.data, 

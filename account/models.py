@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 # from django.core.validators import MinValueValidator, MaxValueValidator
 
 
@@ -70,7 +70,7 @@ class CompanyCode(models.Model):
 
 class Organization(models.Model):
     name = models.CharField(max_length=20, unique=True)
-    
+
     class Meta:
         db_table = "Organization"
         verbose_name_plural = "Organizations"
@@ -125,7 +125,7 @@ class EmployeeManager(BaseUserManager):
         return user
 
     def create_superuser(self, email, name, empID, role, organization, department, companyCode,
-                          costcenter, branch, password=None, doj=None):   
+                          costcenter, branch, password=None, doj=None):
         user = self.create_user(
             email,
             name = name,
@@ -146,7 +146,7 @@ class EmployeeManager(BaseUserManager):
 
 
 
-class Employee(AbstractBaseUser):
+class Employee(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, max_length=255)
     name = models.CharField(max_length=100)
     empID = models.CharField(max_length=20, primary_key=True, db_index=True)
@@ -172,28 +172,79 @@ class Employee(AbstractBaseUser):
         # indexes = [
         #     models.Index(fields=['empID'], name='empID_index'),
         # ]
-
+        # permissions = (
+        #     ("can_view_dashboard", "Can view dashboard"),
+        #     ("can_edit_profile", "Can edit profile"),
+        # )
     USERNAME_FIELD = 'empID'
     REQUIRED_FIELDS = ['name','organization','email','department','companyCode','role','costcenter', 'branch']
 
     objects = EmployeeManager()
 
+
+
     def __str__(self):
         return f"{self.name}_{self.empID}"
 
+    # def has_perm(self, perm, obj=None):
+    #     "Does the user have a specific permission?"
+    #     # Simplest possible answer: Yes, always
+    #     # return True
+    #     return self.is_superuser
+
+    # def has_module_perms(self, app_label):
+    #     "Does the user have permissions to view the app `app_label`?"
+    #     # Simplest possible answer: Yes, always
+    #     return True
+
+    # @property
+    # def is_staff(self):
+    #     "Is the user a member of staff?"
+    #     # Simplest possible answer: All admins are staff
+    #     return self.is_superuser
+
+
+
     def has_perm(self, perm, obj=None):
-        "Does the user have a specific permission?"
-        # Simplest possible answer: Yes, always
-        # return True
-        return self.is_superuser
+        # Custom logic: superusers have all permissions
+        if self.is_superuser:
+            return True
+
+        # Custom logic: check if user is in a specific group
+        if self.groups.filter(name='SpecialGroup').exists():
+            return True
+
+        # Default permission checking
+        return super().has_perm(perm, obj)
+
 
     def has_module_perms(self, app_label):
-        "Does the user have permissions to view the app `app_label`?"
-        # Simplest possible answer: Yes, always
-        return True
+        # Custom logic: superusers have permissions for any module
+        if self.is_superuser:
+            return True
+
+        # Custom logic: allow access to specific modules for users in certain groups
+        allowed_groups = ['SpecialGroup', 'AnotherGroup']
+        if self.groups.filter(name__in=allowed_groups).exists():
+            return True
+
+        # Default module permission checking
+        return super().has_module_perms(app_label)
+
 
     @property
     def is_staff(self):
-        "Is the user a member of staff?"
-        # Simplest possible answer: All admins are staff
-        return self.is_superuser
+        # Custom logic: superusers are always staff
+        if self.is_superuser:
+            # print(1)
+            return True
+
+        if self.role.roleName == "admin":
+            # print(2)
+            return True
+        # Custom logic: users with custom attribute are staff
+        # return self.custom_attribute
+        return False
+    
+
+
